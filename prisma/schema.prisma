@@ -1,0 +1,57 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// Identidad ligera por sesión (beta sin login): cada navegador genera
+// su sessionId en localStorage y lo envía en la cabecera x-session-id.
+model Conversation {
+  id        String    @id @default(cuid())
+  sessionId String
+  title     String    @default("Nueva conversación")
+  messages  Message[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@index([sessionId])
+}
+
+model Message {
+  id             String       @id @default(cuid())
+  conversationId String
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  role           String // "user" | "assistant"
+  content        String
+  kind           String       @default("text") // "text" | "image" | "document"
+  imageBase64    String? // imagen generada (data URL) cuando kind = "image"
+  documentId     String? // documento generado cuando kind = "document"
+  createdAt      DateTime     @default(now())
+
+  @@index([conversationId])
+}
+
+model Memory {
+  id        String   @id @default(cuid())
+  sessionId String
+  content   String
+  source    String   @default("auto") // "auto" | "manual"
+  createdAt DateTime @default(now())
+
+  @@index([sessionId])
+}
+
+model GeneratedDocument {
+  id             String   @id @default(cuid())
+  sessionId      String
+  title          String
+  content        String // contenido en Markdown
+  fileName       String
+  conversationId String?
+  createdAt      DateTime @default(now())
+
+  @@index([sessionId])
+}
