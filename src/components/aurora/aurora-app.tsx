@@ -6,6 +6,7 @@ import { useAurora } from '@/lib/store'
 import { ListaMensajes } from '@/components/aurora/message-list'
 import { Composer } from '@/components/aurora/composer'
 import { ContenidoSidebar } from '@/components/aurora/sidebar'
+import { BadgeMotor } from '@/components/aurora/engine-badge'
 import { PanelMemoria } from '@/components/aurora/memory-panel'
 import { Sheet, SheetContent, SheetTitle } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
@@ -61,6 +62,7 @@ export function AuroraApp() {
             <span className="hidden shrink-0 rounded-full border border-emerald-500/40 bg-emerald-500/10 px-2 py-0.5 text-[10px] font-semibold text-emerald-400 sm:inline">
               BETA
             </span>
+            <BadgeMotor />
           </div>
 
           <Button

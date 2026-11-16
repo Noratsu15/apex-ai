@@ -1,6 +1,6 @@
 import { NextRequest } from 'next/server'
 import { db } from '@/lib/db'
-import { getZAI } from '@/lib/zai'
+import { obtenerMotor } from '@/lib/brain'
 import { getSessionId } from '@/lib/session'
 import { systemPromptChat } from '@/lib/prompts'
 import {
@@ -68,54 +68,12 @@ export async function POST(req: NextRequest) {
         controller.enqueue(encoder.encode(`data: ${JSON.stringify(obj)}\n\n`))
 
       try {
-        const zai = await getZAI()
-        const resultado = (await zai.chat.completions.create({
-          messages: mensajesLLM,
-          stream: true,
-          thinking: { type: 'disabled' },
-        })) as unknown
-
+        // Motor de IA: cerebro Python (FastAPI) con respaldo TypeScript
+        const motor = await obtenerMotor()
         let completo = ''
-
-        if (resultado && typeof (resultado as ReadableStream).getReader === 'function') {
-          // Caso streaming: leer el SSE del modelo y retransmitir los deltas
-          const lector = (resultado as ReadableStream<Uint8Array>).getReader()
-          const decoder = new TextDecoder()
-          let buffer = ''
-          while (true) {
-            const { done, value } = await lector.read()
-            if (done) break
-            buffer += decoder.decode(value, { stream: true })
-            const lineas = buffer.split('\n')
-            buffer = lineas.pop() ?? ''
-            for (const linea of lineas) {
-              const limpia = linea.trim()
-              if (!limpia.startsWith('data:')) continue
-              const payload = limpia.slice(5).trim()
-              if (!payload || payload === '[DONE]') continue
-              try {
-                const json = JSON.parse(payload) as {
-                  choices?: Array<{ delta?: { content?: string } }>
-                }
-                const delta = json.choices?.[0]?.delta?.content
-                if (typeof delta === 'string' && delta) {
-                  completo += delta
-                  enviar({ type: 'delta', content: delta })
-                }
-              } catch {
-                // fragmento SSE incompleto: se completará en la siguiente lectura
-              }
-            }
-          }
-        } else if (resultado && typeof resultado === 'object') {
-          // Respaldo: el backend respondió en JSON completo
-          const texto =
-            (resultado as { choices?: Array<{ message?: { content?: string } }> }).choices?.[0]?.message
-              ?.content ?? ''
-          if (texto) {
-            completo = texto
-            enviar({ type: 'delta', content: texto })
-          }
+        for await (const delta of motor.streamChat(mensajesLLM)) {
+          completo += delta
+          enviar({ type: 'delta', content: delta })
         }
 
         if (!completo.trim()) {

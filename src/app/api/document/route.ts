@@ -1,6 +1,6 @@
 import { NextRequest } from 'next/server'
 import { db } from '@/lib/db'
-import { getZAI } from '@/lib/zai'
+import { obtenerMotor } from '@/lib/brain'
 import { getSessionId } from '@/lib/session'
 import { systemPromptDocumento } from '@/lib/prompts'
 import { slugify } from '@/lib/markdown-to-docx'
@@ -63,15 +63,12 @@ export async function POST(req: NextRequest) {
   if (prompt.length > 4000) prompt = prompt.slice(0, 4000)
 
   try {
-    const zai = await getZAI()
-    const respuesta = await zai.chat.completions.create({
-      messages: [
-        { role: 'system', content: systemPromptDocumento },
-        { role: 'user', content: prompt },
-      ],
-      thinking: { type: 'disabled' },
-    })
-    const texto: string = respuesta?.choices?.[0]?.message?.content ?? ''
+    // Motor de IA: cerebro Python (FastAPI) con respaldo TypeScript
+    const motor = await obtenerMotor()
+    const texto = await motor.completar([
+      { role: 'system', content: systemPromptDocumento },
+      { role: 'user', content: prompt },
+    ])
     if (!texto.trim()) throw new Error('El modelo devolvió una respuesta vacía')
 
     const { title, content } = parsearDocumento(texto, prompt)

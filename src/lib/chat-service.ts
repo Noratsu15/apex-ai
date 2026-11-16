@@ -1,6 +1,7 @@
 import { db } from '@/lib/db'
-import { getZAI } from '@/lib/zai'
+import { obtenerMotor } from '@/lib/brain'
 import { systemPromptMemoria } from '@/lib/prompts'
+import type { MensajeLLM } from '@/lib/brain'
 import type { MensajeDTO } from '@/lib/types'
 
 const MAX_MENSAJES_CONTEXTO = 20
@@ -65,7 +66,7 @@ export async function extraerMemorias(
   respuestaAsistente: string
 ): Promise<string[]> {
   try {
-    const zai = await getZAI()
+    const motor = await obtenerMotor()
     const existentes = await db.memory.findMany({ where: { sessionId }, select: { content: true } })
 
     const yaSabe =
@@ -75,18 +76,15 @@ export async function extraerMemorias(
             .join('\n')}\n`
         : '\nLo que YA sabes del usuario: (nada todavía)\n'
 
-    const respuesta = await zai.chat.completions.create({
-      messages: [
-        { role: 'system', content: systemPromptMemoria },
-        {
-          role: 'user',
-          content: `${yaSabe}\nIntercambio:\nUsuario: ${mensajeUsuario.slice(0, 1200)}\nAsistente: ${respuestaAsistente.slice(0, 800)}`,
-        },
-      ],
-      thinking: { type: 'disabled' },
-    })
-    const texto: string = respuesta?.choices?.[0]?.message?.content ?? '[]'
-    const coincidencia = texto.match(/\[[\s\S]*\]/)
+    const mensajesMemoria: MensajeLLM[] = [
+      { role: 'system', content: systemPromptMemoria },
+      {
+        role: 'user',
+        content: `${yaSabe}\nIntercambio:\nUsuario: ${mensajeUsuario.slice(0, 1200)}\nAsistente: ${respuestaAsistente.slice(0, 800)}`,
+      },
+    ]
+    const texto = await motor.completar(mensajesMemoria)
+    const coincidencia = (texto || '[]').match(/\[[\s\S]*\]/)
     if (!coincidencia) return []
     const datos = JSON.parse(coincidencia[0]) as unknown
     if (!Array.isArray(datos)) return []

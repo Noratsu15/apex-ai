@@ -1,5 +1,6 @@
 import { NextRequest } from 'next/server'
 import { db } from '@/lib/db'
+import { docxViaPython } from '@/lib/brain'
 import { getSessionId } from '@/lib/session'
 import { markdownADocx } from '@/lib/markdown-to-docx'
 
@@ -18,8 +19,11 @@ export async function GET(req: NextRequest, ctx: { params: Promise<{ id: string 
   if (!documento) return Response.json({ error: 'Documento no encontrado' }, { status: 404 })
 
   try {
-    const buffer = await markdownADocx(documento.title, documento.content)
-    const nombreSeguro = documento.fileName.replace(/[^\w.-]/g, '_')
+    // 1. El .docx lo construye el cerebro Python con python-docx
+    const viaPython = await docxViaPython(documento.title, documento.content, documento.fileName)
+    // 2. Respaldo: conversor TypeScript (docx) si Python no está disponible
+    const buffer = viaPython?.buffer ?? (await markdownADocx(documento.title, documento.content))
+    const nombreSeguro = (viaPython?.fileName ?? documento.fileName).replace(/[^\w.-]/g, '_')
 
     return new Response(new Uint8Array(buffer), {
       headers: {
