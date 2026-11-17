@@ -25,7 +25,7 @@ export const Markdown = memo(function Markdown({ contenido }: { contenido: strin
           li: ({ children }) => <li className="leading-relaxed">{children}</li>,
           strong: ({ children }) => <strong className="font-semibold text-zinc-50">{children}</strong>,
           blockquote: ({ children }) => (
-            <blockquote className="my-3 border-l-2 border-emerald-500/50 pl-4 text-zinc-400 italic">
+            <blockquote className="my-3 border-l-2 border-amber-500/50 pl-4 text-zinc-400 italic">
               {children}
             </blockquote>
           ),
@@ -34,7 +34,7 @@ export const Markdown = memo(function Markdown({ contenido }: { contenido: strin
               href={href}
               target="_blank"
               rel="noreferrer"
-              className="text-emerald-400 underline underline-offset-2 hover:text-emerald-300"
+              className="text-amber-400 underline underline-offset-2 hover:text-amber-300"
             >
               {children}
             </a>
@@ -51,7 +51,7 @@ export const Markdown = memo(function Markdown({ contenido }: { contenido: strin
           td: ({ children }) => <td className="border-t border-zinc-800 px-3 py-2">{children}</td>,
           hr: () => <hr className="my-4 border-zinc-800" />,
           code: ({ children }) => (
-            <code className="rounded bg-zinc-800/80 px-1.5 py-0.5 font-mono text-[13px] text-emerald-300">
+            <code className="rounded bg-zinc-800/80 px-1.5 py-0.5 font-mono text-[13px] text-amber-300">
               {children}
             </code>
           ),

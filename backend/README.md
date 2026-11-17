@@ -1,4 +1,4 @@
-# Cerebro de Aurora IA (Python · FastAPI)
+# Cerebro de Apex IA (Python · FastAPI)
 
 Servicio Python que concentra **toda la inferencia de IA** del producto:
 

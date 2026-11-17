@@ -14,12 +14,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Aurora IA — Chat inteligente (Beta)",
+  title: "Apex IA — Chat inteligente (Beta)",
   description:
     "Asistente de IA en fase beta: responde preguntas, genera imágenes, crea documentos Word, guarda el historial y recuerda lo importante.",
-  keywords: ["Aurora IA", "chat", "inteligencia artificial", "beta", "generación de imágenes", "documentos"],
+  keywords: ["Apex IA", "chat", "inteligencia artificial", "beta", "generación de imágenes", "documentos"],
   icons: {
-    icon: "https://z-cdn.chatglm.cn/z-ai/static/logo.svg",
+    icon: "https://ik.imagekit.io/ugythf2a3/logo.png?updatedAt=1791496158688",
   },
 };
 

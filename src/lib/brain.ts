@@ -1,5 +1,5 @@
 /**
- * brain.ts — Selección del motor de IA de Aurora.
+ * brain.ts — Selección del motor de IA de Apex.
  *
  * Arquitectura del producto:
  *  1. **Cerebro Python (FastAPI)** — motor principal. Toda la inferencia

@@ -221,7 +221,7 @@ def construir_docx(titulo: str, markdown: str) -> bytes:
     hoy = date.today()
     p = doc.add_paragraph()
     run = p.add_run(
-        f"Documento generado por Aurora IA (Beta) — {hoy.day} de {_MESES[hoy.month - 1]} de {hoy.year}"
+        f"Documento generado por Apex IA (Beta) — {hoy.day} de {_MESES[hoy.month - 1]} de {hoy.year}"
     )
     run.italic = True
     run.font.color.rgb = RGBColor(0x99, 0x99, 0x99)

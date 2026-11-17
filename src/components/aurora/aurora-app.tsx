@@ -57,9 +57,9 @@ export function AuroraApp() {
           </Button>
 
           <div className="flex min-w-0 flex-1 items-center gap-2.5">
-            <Sparkles className="h-4 w-4 shrink-0 text-emerald-400 lg:hidden" aria-hidden />
+            <Sparkles className="h-4 w-4 shrink-0 text-amber-400 lg:hidden" aria-hidden />
             <h1 className="truncate text-sm font-semibold text-zinc-200">{tituloActivo}</h1>
-            <span className="hidden shrink-0 rounded-full border border-emerald-500/40 bg-emerald-500/10 px-2 py-0.5 text-[10px] font-semibold text-emerald-400 sm:inline">
+            <span className="hidden shrink-0 rounded-full border border-amber-500/40 bg-amber-500/10 px-2 py-0.5 text-[10px] font-semibold text-amber-400 sm:inline">
               BETA
             </span>
             <BadgeMotor />
@@ -69,12 +69,12 @@ export function AuroraApp() {
             variant="outline"
             size="sm"
             onClick={() => abrirPanelMemoria(true)}
-            className="gap-2 border-zinc-800 bg-zinc-900/60 text-zinc-300 hover:border-emerald-500/40 hover:bg-zinc-900 hover:text-emerald-400"
-            aria-label={`Abrir memoria de Aurora (${memorias.length} recuerdos)`}
+            className="gap-2 border-zinc-800 bg-zinc-900/60 text-zinc-300 hover:border-amber-500/40 hover:bg-zinc-900 hover:text-amber-400"
+            aria-label={`Abrir memoria de Apex (${memorias.length} recuerdos)`}
           >
             <Brain className="h-4 w-4" aria-hidden />
             <span className="hidden sm:inline">Memoria</span>
-            <span className="rounded-full bg-emerald-500/15 px-1.5 py-0.5 text-[10px] font-bold text-emerald-400">
+            <span className="rounded-full bg-amber-500/15 px-1.5 py-0.5 text-[10px] font-bold text-amber-400">
               {memorias.length}
             </span>
           </Button>
@@ -86,8 +86,8 @@ export function AuroraApp() {
             <ListaMensajes />
           ) : (
             <div className="flex h-full items-center justify-center">
-              <div className="flex h-10 w-10 animate-pulse items-center justify-center rounded-2xl border border-emerald-500/30 bg-emerald-500/10">
-                <Sparkles className="h-5 w-5 text-emerald-400" aria-hidden />
+              <div className="flex h-10 w-10 animate-pulse items-center justify-center rounded-2xl border border-amber-500/30 bg-amber-500/10">
+                <Sparkles className="h-5 w-5 text-amber-400" aria-hidden />
               </div>
             </div>
           )}

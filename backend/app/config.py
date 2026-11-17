@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-config.py — Configuración del proveedor de IA del cerebro Aurora.
+config.py — Configuración del proveedor de IA del cerebro Apex.
 
 Las credenciales NUNCA van en el código. Orden de prioridad:
 

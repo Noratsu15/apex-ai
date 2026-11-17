@@ -1,4 +1,4 @@
-# Cerebro de IA de Aurora — dependencias Python
+# Cerebro de IA de Apex — dependencias Python
 # Instalación: pip install -r requirements.txt
 fastapi>=0.110
 uvicorn>=0.29

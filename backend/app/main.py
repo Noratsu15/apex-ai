@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-main.py — Cerebro de IA de Aurora (FastAPI).
+main.py — Cerebro de IA de Apex (FastAPI).
 
 Endpoints
 ---------
@@ -29,8 +29,8 @@ from .config import config
 from .docx_builder import construir_docx, slugify
 
 app = FastAPI(
-    title="Aurora IA — Cerebro",
-    description="Motor de IA (Python/FastAPI) del chat Aurora: chat, imágenes y documentos.",
+    title="Apex IA — Cerebro",
+    description="Motor de IA (Python/FastAPI) del chat Apex: chat, imágenes y documentos.",
     version="1.0.0-beta",
 )
 
@@ -84,7 +84,7 @@ class DocxSolicitud(BaseModel):
 async def health() -> dict:
     return {
         "ok": True,
-        "servicio": "aurora-cerebro",
+        "servicio": "apex-cerebro",
         "lenguaje": "python",
         "ia": config.listo,
         "proveedor": config.proveedor,

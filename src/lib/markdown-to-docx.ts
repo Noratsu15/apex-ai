@@ -237,7 +237,7 @@ export async function markdownADocx(titulo: string, markdown: string): Promise<B
     new Paragraph({
       children: [
         new TextRun({
-          text: `Documento generado por Aurora IA (Beta) — ${new Date().toLocaleDateString('es', {
+          text: `Documento generado por Apex IA (Beta) — ${new Date().toLocaleDateString('es', {
             day: 'numeric',
             month: 'long',
             year: 'numeric',

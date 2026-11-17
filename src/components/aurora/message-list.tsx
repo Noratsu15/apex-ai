@@ -26,7 +26,7 @@ function ImagenGenerada({ mensaje }: { mensaje: MensajeDTO }) {
     if (!mensaje.imageBase64) return
     const a = document.createElement('a')
     a.href = mensaje.imageBase64
-    a.download = `aurora-imagen-${mensaje.id.slice(0, 8)}.png`
+    a.download = `apex-imagen-${mensaje.id.slice(0, 8)}.png`
     a.click()
   }
   return (
@@ -39,7 +39,7 @@ function ImagenGenerada({ mensaje }: { mensaje: MensajeDTO }) {
         />
       ) : (
         <div className="flex aspect-square max-w-md items-center justify-center bg-zinc-900/50">
-          <Loader2 className="h-8 w-8 animate-spin text-emerald-400" />
+          <Loader2 className="h-8 w-8 animate-spin text-amber-400" />
         </div>
       )}
       <figcaption className="flex items-center justify-between gap-3 border-t border-zinc-800 px-3 py-2">
@@ -47,7 +47,7 @@ function ImagenGenerada({ mensaje }: { mensaje: MensajeDTO }) {
         <button
           type="button"
           onClick={descargar}
-          className="inline-flex shrink-0 items-center gap-1.5 rounded-md border border-zinc-700 px-2.5 py-1.5 text-xs font-medium text-zinc-300 transition-colors hover:border-emerald-500/50 hover:text-emerald-400"
+          className="inline-flex shrink-0 items-center gap-1.5 rounded-md border border-zinc-700 px-2.5 py-1.5 text-xs font-medium text-zinc-300 transition-colors hover:border-amber-500/50 hover:text-amber-400"
         >
           <Download className="h-3.5 w-3.5" />
           PNG
@@ -76,7 +76,7 @@ function DocumentoGenerado({ mensaje }: { mensaje: MensajeDTO }) {
       const url = URL.createObjectURL(blob)
       const a = document.createElement('a')
       a.href = url
-      a.download = `documento-aurora-${mensaje.documentId.slice(0, 8)}.docx`
+      a.download = `documento-apex-${mensaje.documentId.slice(0, 8)}.docx`
       a.click()
       URL.revokeObjectURL(url)
     } catch {
@@ -89,7 +89,7 @@ function DocumentoGenerado({ mensaje }: { mensaje: MensajeDTO }) {
   return (
     <div className="w-full max-w-md rounded-xl border border-zinc-800 bg-zinc-900 p-4">
       <div className="flex items-start gap-3">
-        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-400">
+        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-amber-500/10 text-amber-400">
           <FileText className="h-5 w-5" />
         </div>
         <div className="min-w-0 flex-1">
@@ -101,7 +101,7 @@ function DocumentoGenerado({ mensaje }: { mensaje: MensajeDTO }) {
         type="button"
         onClick={descargar}
         disabled={descargando}
-        className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-emerald-500 px-3 py-2 text-sm font-semibold text-zinc-950 transition-colors hover:bg-emerald-400 disabled:opacity-60"
+        className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-amber-500 px-3 py-2 text-sm font-semibold text-zinc-950 transition-colors hover:bg-amber-400 disabled:opacity-60"
       >
         {descargando ? <Loader2 className="h-4 w-4 animate-spin" /> : <Download className="h-4 w-4" />}
         {descargando ? 'Preparando archivo…' : 'Descargar .docx'}
@@ -132,7 +132,7 @@ function Burbuja({ mensaje, esUltima }: { mensaje: MensajeDTO; esUltima: boolean
   if (mensaje.role === 'user') {
     return (
       <div className="flex justify-end">
-        <div className="max-w-[85%] rounded-2xl rounded-br-md border border-emerald-500/25 bg-emerald-500/10 px-4 py-2.5 text-[15px] whitespace-pre-wrap text-zinc-100">
+        <div className="max-w-[85%] rounded-2xl rounded-br-md border border-amber-500/25 bg-amber-500/10 px-4 py-2.5 text-[15px] whitespace-pre-wrap text-zinc-100">
           {mensaje.content}
         </div>
       </div>
@@ -143,8 +143,8 @@ function Burbuja({ mensaje, esUltima }: { mensaje: MensajeDTO; esUltima: boolean
     <div className="flex gap-3">
       <div
         className={cn(
-          'mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border text-emerald-400',
-          mensaje.error ? 'border-red-500/40 bg-red-500/10' : 'border-emerald-500/30 bg-emerald-500/10'
+          'mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border text-amber-400',
+          mensaje.error ? 'border-red-500/40 bg-red-500/10' : 'border-amber-500/30 bg-amber-500/10'
         )}
         aria-hidden
       >
@@ -156,8 +156,8 @@ function Burbuja({ mensaje, esUltima }: { mensaje: MensajeDTO; esUltima: boolean
       </div>
       <div className="min-w-0 flex-1">
         <div className="mb-1 flex items-center gap-2">
-          <span className="text-sm font-semibold text-zinc-200">Aurora</span>
-          {enCurso && <span className="text-xs text-emerald-400">escribiendo…</span>}
+          <span className="text-sm font-semibold text-zinc-200">Apex</span>
+          {enCurso && <span className="text-xs text-amber-400">escribiendo…</span>}
         </div>
 
         {mensaje.error ? (
@@ -174,14 +174,14 @@ function Burbuja({ mensaje, esUltima }: { mensaje: MensajeDTO; esUltima: boolean
               <>
                 <Markdown contenido={mensaje.content} />
                 {enCurso && (
-                  <span className="ml-0.5 inline-block h-4 w-2 animate-pulse rounded-sm bg-emerald-400 align-text-bottom" />
+                  <span className="ml-0.5 inline-block h-4 w-2 animate-pulse rounded-sm bg-amber-400 align-text-bottom" />
                 )}
               </>
             ) : (
-              <div className="flex items-center gap-1.5 py-2" aria-label="Aurora está pensando">
-                <span className="h-2 w-2 animate-bounce rounded-full bg-emerald-400 [animation-delay:0ms]" />
-                <span className="h-2 w-2 animate-bounce rounded-full bg-emerald-400 [animation-delay:150ms]" />
-                <span className="h-2 w-2 animate-bounce rounded-full bg-emerald-400 [animation-delay:300ms]" />
+              <div className="flex items-center gap-1.5 py-2" aria-label="Apex está pensando">
+                <span className="h-2 w-2 animate-bounce rounded-full bg-amber-400 [animation-delay:0ms]" />
+                <span className="h-2 w-2 animate-bounce rounded-full bg-amber-400 [animation-delay:150ms]" />
+                <span className="h-2 w-2 animate-bounce rounded-full bg-amber-400 [animation-delay:300ms]" />
               </div>
             )}
           </div>
@@ -193,7 +193,7 @@ function Burbuja({ mensaje, esUltima }: { mensaje: MensajeDTO; esUltima: boolean
             onClick={copiar}
             className="mt-1.5 inline-flex items-center gap-1.5 rounded-md px-2 py-1 text-xs text-zinc-500 transition-colors hover:bg-zinc-800/60 hover:text-zinc-300"
           >
-            {copiado ? <Check className="h-3.5 w-3.5 text-emerald-400" /> : <Copy className="h-3.5 w-3.5" />}
+            {copiado ? <Check className="h-3.5 w-3.5 text-amber-400" /> : <Copy className="h-3.5 w-3.5" />}
             {copiado ? 'Copiado' : 'Copiar'}
           </button>
         )}
@@ -236,11 +236,11 @@ function EstadoVacio() {
 
   return (
     <div className="mx-auto flex max-w-2xl flex-col items-center px-4 py-10 text-center sm:py-16">
-      <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-emerald-500/30 bg-emerald-500/10">
-        <Sparkles className="h-7 w-7 text-emerald-400" aria-hidden />
+      <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-amber-500/30 bg-amber-500/10">
+        <Sparkles className="h-7 w-7 text-amber-400" aria-hidden />
       </div>
       <h1 className="mt-5 text-2xl font-bold text-zinc-50 sm:text-3xl">
-        Hola, soy <span className="text-emerald-400">Aurora</span>
+        Hola, soy <span className="text-amber-400">Apex</span>
       </h1>
       <p className="mt-2 max-w-md text-sm text-zinc-400 sm:text-base">
         Tu asistente de IA en fase beta. Puedo responder preguntas, crear imágenes, generar documentos
@@ -257,12 +257,12 @@ function EstadoVacio() {
               setModo(modo)
               void enviarMensaje(ejemplo)
             }}
-            className="group flex flex-col items-start gap-1.5 rounded-xl border border-zinc-800 bg-zinc-900/60 p-4 text-left transition-all hover:-translate-y-0.5 hover:border-emerald-500/40 hover:bg-zinc-900 disabled:pointer-events-none disabled:opacity-60"
+            className="group flex flex-col items-start gap-1.5 rounded-xl border border-zinc-800 bg-zinc-900/60 p-4 text-left transition-all hover:-translate-y-0.5 hover:border-amber-500/40 hover:bg-zinc-900 disabled:pointer-events-none disabled:opacity-60"
           >
-            <Icono className="h-5 w-5 text-emerald-400" aria-hidden />
+            <Icono className="h-5 w-5 text-amber-400" aria-hidden />
             <span className="text-sm font-semibold text-zinc-100">{titulo}</span>
             <span className="text-xs leading-relaxed text-zinc-500">{descripcion}</span>
-            <span className="mt-1 line-clamp-2 text-xs italic text-zinc-600 group-hover:text-emerald-500/80">
+            <span className="mt-1 line-clamp-2 text-xs italic text-zinc-600 group-hover:text-amber-500/80">
               &ldquo;{ejemplo}&rdquo;
             </span>
           </button>
@@ -271,13 +271,13 @@ function EstadoVacio() {
 
       <div className="mt-8 flex flex-wrap items-center justify-center gap-2 text-xs text-zinc-500">
         <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-800 px-3 py-1">
-          <Brain className="h-3.5 w-3.5 text-emerald-400" /> Memoria persistente
+          <Brain className="h-3.5 w-3.5 text-amber-400" /> Memoria persistente
         </span>
         <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-800 px-3 py-1">
-          <ImageIcon className="h-3.5 w-3.5 text-emerald-400" /> Imágenes con IA
+          <ImageIcon className="h-3.5 w-3.5 text-amber-400" /> Imágenes con IA
         </span>
         <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-800 px-3 py-1">
-          <FileText className="h-3.5 w-3.5 text-emerald-400" /> Documentos .docx
+          <FileText className="h-3.5 w-3.5 text-amber-400" /> Documentos .docx
         </span>
       </div>
     </div>

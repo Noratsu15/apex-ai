@@ -59,14 +59,14 @@ function ElementoConversacion({ conv }: { conv: ConversacionResumenDTO }) {
         className={cn(
           'w-full rounded-lg border px-3 py-2.5 pr-14 text-left transition-colors',
           activa
-            ? 'border-emerald-500/40 bg-emerald-500/10'
+            ? 'border-amber-500/40 bg-amber-500/10'
             : 'border-transparent hover:border-zinc-800 hover:bg-zinc-900/70'
         )}
         aria-current={activa ? 'page' : undefined}
       >
         <span className="flex items-center gap-2">
           <MessageSquare
-            className={cn('h-3.5 w-3.5 shrink-0', activa ? 'text-emerald-400' : 'text-zinc-600')}
+            className={cn('h-3.5 w-3.5 shrink-0', activa ? 'text-amber-400' : 'text-zinc-600')}
             aria-hidden
           />
           <span className={cn('truncate text-sm', activa ? 'text-zinc-50' : 'text-zinc-300')}>
@@ -88,7 +88,7 @@ function ElementoConversacion({ conv }: { conv: ConversacionResumenDTO }) {
             setEditando(true)
           }}
           aria-label={`Renombrar ${conv.title}`}
-          className="rounded-md bg-zinc-900/80 p-1.5 text-zinc-500 backdrop-blur transition-colors hover:text-emerald-400"
+          className="rounded-md bg-zinc-900/80 p-1.5 text-zinc-500 backdrop-blur transition-colors hover:text-amber-400"
         >
           <Pencil className="h-3.5 w-3.5" />
         </button>
@@ -116,7 +116,7 @@ function ElementoConversacion({ conv }: { conv: ConversacionResumenDTO }) {
                 setEditando(false)
               }
             }}
-            className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-100 focus:border-emerald-500/50 focus:outline-none"
+            className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-100 focus:border-amber-500/50 focus:outline-none"
             aria-label="Nuevo título"
             maxLength={80}
           />
@@ -133,7 +133,7 @@ function ElementoConversacion({ conv }: { conv: ConversacionResumenDTO }) {
                 if (titulo.trim()) void renombrarConversacion(conv.id, titulo.trim())
                 setEditando(false)
               }}
-              className="bg-emerald-500 text-zinc-950 hover:bg-emerald-400"
+              className="bg-amber-500 text-zinc-950 hover:bg-amber-400"
             >
               Guardar
             </Button>
@@ -175,12 +175,12 @@ export function ContenidoSidebar() {
     <div className="flex h-full flex-col border-r border-zinc-800/70 bg-zinc-900/40">
       {/* Marca */}
       <div className="flex items-center gap-2.5 px-4 pt-5 pb-4">
-        <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-emerald-500/30 bg-emerald-500/10">
-          <Sparkles className="h-5 w-5 text-emerald-400" aria-hidden />
+        <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-amber-500/30 bg-amber-500/10">
+          <Sparkles className="h-5 w-5 text-amber-400" aria-hidden />
         </div>
         <div className="leading-tight">
           <p className="text-sm font-bold text-zinc-50">
-            Aurora <span className="text-emerald-400">IA</span>
+            Apex <span className="text-amber-400">IA</span>
           </p>
           <p className="text-[10px] font-medium tracking-wide text-zinc-500 uppercase">
             Fase beta · v0.1
@@ -192,7 +192,7 @@ export function ContenidoSidebar() {
       <div className="px-3">
         <Button
           onClick={nuevaConversacion}
-          className="w-full justify-start gap-2 rounded-xl bg-emerald-500 text-sm font-semibold text-zinc-950 shadow-none hover:bg-emerald-400"
+          className="w-full justify-start gap-2 rounded-xl bg-amber-500 text-sm font-semibold text-zinc-950 shadow-none hover:bg-amber-400"
         >
           <Plus className="h-4 w-4" aria-hidden />
           Nueva conversación
@@ -206,7 +206,7 @@ export function ContenidoSidebar() {
         </p>
         {conversaciones.length === 0 ? (
           <p className="px-4 text-xs leading-relaxed text-zinc-600">
-            Aún no hay conversaciones. Todo lo que hables con Aurora quedará guardado aquí.
+            Aún no hay conversaciones. Todo lo que hables con Apex quedará guardado aquí.
           </p>
         ) : (
           <ul className="flex-1 space-y-1 overflow-y-auto px-3 pb-4">

@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 
 /**
- * Panel lateral de memoria: lo que Aurora recuerda del usuario.
+ * Panel lateral de memoria: lo que Apex recuerda del usuario.
  * Permite ver, añadir y eliminar recuerdos (automáticos y manuales).
  */
 export function PanelMemoria() {
@@ -35,11 +35,11 @@ export function PanelMemoria() {
       <SheetContent side="right" className="flex w-full flex-col border-zinc-800 bg-zinc-950 p-0 sm:max-w-md">
         <SheetHeader className="border-b border-zinc-800 px-5 py-4">
           <SheetTitle className="flex items-center gap-2 text-zinc-50">
-            <Brain className="h-5 w-5 text-emerald-400" aria-hidden />
-            Memoria de Aurora
+            <Brain className="h-5 w-5 text-amber-400" aria-hidden />
+            Memoria de Apex
           </SheetTitle>
           <SheetDescription className="text-zinc-400">
-            Lo que Aurora recuerda sobre ti entre conversaciones. Se usa automáticamente para darte
+            Lo que Apex recuerda sobre ti entre conversaciones. Se usa automáticamente para darte
             respuestas más personales.
           </SheetDescription>
         </SheetHeader>
@@ -58,14 +58,14 @@ export function PanelMemoria() {
                 if (e.key === 'Enter') void agregar()
               }}
               placeholder="Ej.: Trabajo en marketing y prefiero respuestas breves"
-              className="border-zinc-800 bg-zinc-900 text-sm text-zinc-100 placeholder:text-zinc-600 focus-visible:ring-emerald-500/40"
+              className="border-zinc-800 bg-zinc-900 text-sm text-zinc-100 placeholder:text-zinc-600 focus-visible:ring-amber-500/40"
             />
             <Button
               type="button"
               size="icon"
               onClick={() => void agregar()}
               disabled={!nueva.trim() || guardando}
-              className="shrink-0 bg-emerald-500 text-zinc-950 hover:bg-emerald-400"
+              className="shrink-0 bg-amber-500 text-zinc-950 hover:bg-amber-400"
               aria-label="Añadir memoria"
             >
               {guardando ? <Loader2 className="h-4 w-4 animate-spin" /> : <Plus className="h-4 w-4" />}
@@ -97,7 +97,7 @@ export function PanelMemoria() {
                         variant="outline"
                         className={
                           m.source === 'auto'
-                            ? 'border-emerald-500/40 bg-emerald-500/10 text-[10px] text-emerald-400'
+                            ? 'border-amber-500/40 bg-amber-500/10 text-[10px] text-amber-400'
                             : 'border-zinc-700 bg-zinc-800 text-[10px] text-zinc-400'
                         }
                       >

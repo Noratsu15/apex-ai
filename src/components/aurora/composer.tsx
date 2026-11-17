@@ -63,7 +63,7 @@ export function Composer() {
               className={cn(
                 'inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-medium transition-colors',
                 modo === id
-                  ? 'border-emerald-500/60 bg-emerald-500/15 text-emerald-300'
+                  ? 'border-amber-500/60 bg-amber-500/15 text-amber-300'
                   : 'border-zinc-800 bg-zinc-900/60 text-zinc-400 hover:border-zinc-700 hover:text-zinc-200'
               )}
             >
@@ -74,7 +74,7 @@ export function Composer() {
         </div>
 
         {/* Caja de entrada */}
-        <div className="flex items-end gap-2 rounded-2xl border border-zinc-800 bg-zinc-900/80 p-2 transition-colors focus-within:border-emerald-500/50">
+        <div className="flex items-end gap-2 rounded-2xl border border-zinc-800 bg-zinc-900/80 p-2 transition-colors focus-within:border-amber-500/50">
           <textarea
             ref={areaRef}
             value={texto}
@@ -90,7 +90,7 @@ export function Composer() {
             }}
             rows={1}
             placeholder={PLACEHOLDERS[modo]}
-            aria-label="Mensaje para Aurora"
+            aria-label="Mensaje para Apex"
             className="max-h-40 min-h-[44px] flex-1 resize-none bg-transparent px-2.5 py-2.5 text-[15px] text-zinc-100 placeholder:text-zinc-500 focus:outline-none"
           />
           <button
@@ -98,7 +98,7 @@ export function Composer() {
             onClick={enviar}
             disabled={!texto.trim() || enviando}
             aria-label="Enviar mensaje"
-            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-500 text-zinc-950 transition-all hover:bg-emerald-400 disabled:cursor-not-allowed disabled:opacity-40"
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-amber-500 text-zinc-950 transition-all hover:bg-amber-400 disabled:cursor-not-allowed disabled:opacity-40"
           >
             {enviando ? (
               <Loader2 className="h-5 w-5 animate-spin" aria-hidden />
@@ -117,7 +117,7 @@ export function Composer() {
             </kbd>{' '}
             salto de línea
           </span>
-          {AYUDAS[modo] && <span className="text-emerald-500/70">{AYUDAS[modo]}</span>}
+          {AYUDAS[modo] && <span className="text-amber-500/70">{AYUDAS[modo]}</span>}
         </p>
       </div>
     </div>

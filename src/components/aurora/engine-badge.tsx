@@ -32,9 +32,9 @@ export function BadgeMotor() {
 
   const configuracion =
     estado?.motor === 'python'
-      ? 'border-emerald-500/40 bg-emerald-500/10 text-emerald-400'
+      ? 'border-amber-500/40 bg-amber-500/10 text-amber-400'
       : estado?.motor === 'typescript'
-        ? 'border-amber-500/40 bg-amber-500/10 text-amber-400'
+        ? 'border-sky-500/40 bg-sky-500/10 text-sky-400'
         : 'border-red-500/40 bg-red-500/10 text-red-400'
 
   const etiqueta =
@@ -54,7 +54,7 @@ export function BadgeMotor() {
     >
       <span
         className={`h-1.5 w-1.5 rounded-full ${
-          estado?.motor === 'python' ? 'animate-pulse bg-emerald-400' : 'bg-current'
+          estado?.motor === 'python' ? 'animate-pulse bg-amber-400' : 'bg-current'
         }`}
         aria-hidden
       />

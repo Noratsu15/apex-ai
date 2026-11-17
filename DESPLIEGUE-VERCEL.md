@@ -1,4 +1,4 @@
-# Aurora IA — Guía de despliegue en Vercel (TypeScript + Python)
+# Apex IA — Guía de despliegue en Vercel (TypeScript + Python)
 
 Chat de IA en fase beta: responde preguntas, genera imágenes, crea documentos
 Word, guarda el historial y mantiene memoria del usuario.
@@ -50,7 +50,7 @@ muestra `TS · Respaldo` en lugar de `Python · FastAPI`.
 1. Crea un repositorio en GitHub y sube el proyecto:
 
    ```bash
-   git init && git add . && git commit -m "Aurora IA beta: TypeScript + Python"
+   git init && git add . && git commit -m "Apex IA beta: TypeScript + Python"
    git remote add origin https://github.com/tu-usuario/aurora-ia.git
    git push -u origin main
    ```
